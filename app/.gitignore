@@ -1,3 +1,5 @@
+# yii console commands
+/yii
 
 # phpstorm project files
 .idea
@@ -12,6 +14,12 @@ nbproject
 
 # windows thumbnail cache
 Thumbs.db
+
+# composer vendor dir
+/vendor
+
+# composer itself is not needed
+composer.phar
 
 # Mac DS_Store Files
 .DS_Store

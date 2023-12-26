@@ -1,0 +1,58 @@
+{
+  "name": "pamkil/otus_ha",
+  "description": "orus_ha application",
+  "homepage": "https://github.com/pamkil/otus_ha",
+  "type": "project",
+  "minimum-stability": "stable",
+  "require": {
+    "php": "^8.0",
+    "ext-curl": "*",
+    "ext-dom": "*",
+    "ext-intl": "*",
+    "ext-json": "*",
+    "ext-libxml": "*",
+    "ext-mbstring": "*",
+    "ext-openssl": "*",
+    "ext-pdo": "*",
+    "ext-pcntl": "*",
+    "ext-posix": "*",
+    "ext-simplexml": "*",
+    "ext-xmlreader": "*",
+    "ext-zip": "*",
+    "beberlei/assert": "^3.3",
+    "bizley/jwt": "^3.0",
+    "bower-asset/swagger-ui": "^3.20",
+    "nesbot/carbon": "^2.14",
+    "ramsey/uuid": "^4.2.3",
+    "thamtech/yii2-uuid": "^1.1",
+    "yiisoft/yii2": "~2.0.6",
+    "yiisoft/yii2-authclient": "~2.1",
+    "yiisoft/yii2-httpclient": "~2.0.0",
+    "zircote/swagger-php": "3.*"
+  },
+  "require-dev": {
+    "larapack/dd": "1.*",
+    "roave/security-advisories": "dev-latest",
+    "yiisoft/yii2-debug": "~2.0.0"
+  },
+  "config": {
+    "sort-packages": true,
+    "process-timeout": 1800,
+    "optimize-autoloader": true,
+    "fxp-asset": {
+      "enabled": false
+    },
+    "allow-plugins": {
+      "yiisoft/yii2-composer": true,
+      "composer/package-versions-deprecated": true
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ],
+  "scripts": {
+  }
+}

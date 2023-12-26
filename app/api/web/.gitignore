@@ -1,0 +1,4 @@
+/index.php
+/robots.txt
+assets/*
+!assets/.gitkeep

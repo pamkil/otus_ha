@@ -1,0 +1,76 @@
+version: "3.7"
+services:
+  gateway:
+    build:
+      context: nginx
+    depends_on:
+      - php-fpm
+    ports:
+      - "8080:80"
+    volumes:
+      - ../app:/app
+    networks:
+      - backend
+    restart: always
+
+  php-fpm:
+    build:
+      context: php-fpm
+    environment:
+      APP_ENV: ${APP_ENV}
+      APP_DEBUG: ${DEBUG}
+      PHP_DEBUG_HOST: ${PHP_DEBUG_HOST}
+      PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PORT: ${DB_PORT}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    depends_on:
+      - postgres
+    networks:
+      - backend
+    volumes:
+      - ../app:/app
+    restart: always
+
+  php-cli:
+    build:
+      context: php-cli
+    environment:
+      PHP_IDE_CONFIG: "serverName=Docker"
+      PHP_DEBUG_HOST: ${PHP_DEBUG_HOST}
+      APP_ENV: ${APP_ENV}
+      APP_DEBUG: ${APP_DEBUG}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
+    depends_on:
+      - postgres
+    volumes:
+      - ../app:/app
+    networks:
+      - backend
+
+  postgres:
+    build: ./postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres:/var/lib/postgresql/data
+      - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - "54321:5432"
+    networks:
+      - backend
+    restart: always
+
+volumes:
+  postgres:
+
+networks:
+  backend:
