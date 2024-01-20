@@ -1,21 +1,21 @@
 version: "3.7"
 services:
-  gateway:
+  gateway-o:
     build:
       context: nginx
     depends_on:
-      - php-fpm
+      - php-fpm-o
     ports:
-      - "8080:80"
+      - "8000:80"
     volumes:
       - ../app:/app
     networks:
       - backend
     restart: always
 
-  php-fpm:
+  php-fpm-o:
     build:
-      context: php-fpm
+      context: php-fpm-o
     environment:
       APP_ENV: ${APP_ENV}
       APP_DEBUG: ${DEBUG}
@@ -27,16 +27,16 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
     depends_on:
-      - postgres
+      - postgres-o
     networks:
       - backend
     volumes:
       - ../app:/app
     restart: always
 
-  php-cli:
+  php-cli-o:
     build:
-      context: php-cli
+      context: php-cli-o
     environment:
       PHP_IDE_CONFIG: "serverName=Docker"
       PHP_DEBUG_HOST: ${PHP_DEBUG_HOST}
@@ -48,29 +48,29 @@ services:
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
     depends_on:
-      - postgres
+      - postgres-o
     volumes:
       - ../app:/app
     networks:
       - backend
 
-  postgres:
+  postgres-o:
     build: ./postgres
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${DB_NAME}
     volumes:
-      - postgres:/var/lib/postgresql/data
+      - postgres-o:/var/lib/postgresql/data
       - ./postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
-      - "54321:5432"
+      - "54325:5432"
     networks:
       - backend
     restart: always
 
 volumes:
-  postgres:
+  postgres-o:
 
 networks:
   backend:

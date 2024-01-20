@@ -2,6 +2,8 @@
 
 namespace api\modules\v1;
 
+use OpenApi\Annotations as OA;
+
 /**
  * @OA\OpenApi(
  * 		@OA\Info(
@@ -39,7 +41,7 @@ namespace api\modules\v1;
  */
 class Module extends \yii\base\Module
 {
-    public $controllerNamespace = 'api\modules\v1\controllers';
+    public $controllerNamespace = 'api\modules\v1';
 
     public function init()
     {

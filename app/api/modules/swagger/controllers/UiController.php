@@ -11,11 +11,11 @@ class UiController extends Controller
 {
     /**
      * @param null $id
-     * @param string $ver is: v1 or cc1
+     * @param string $ver is: v1
      *
      * @return string
      */
-    public function actionSwagger($id = null, $ver = 'v1')
+    public function actionSwagger($id = null, string $ver = 'v1')
     {
         Yii::$app->response->format = 'html';
         $this->layout = false;

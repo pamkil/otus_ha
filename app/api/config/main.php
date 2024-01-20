@@ -6,12 +6,14 @@ use bizley\jwt\Jwt;
 use Lcobucci\Clock\SystemClock;
 use Lcobucci\JWT\Validation\Constraint\LooseValidAt;
 use Lcobucci\JWT\Validation\Constraint\SignedWith;
+use yii\web\UrlManager;
+use yii\web\User;
 
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
     require __DIR__ . '/params.php',
-    require __DIR__ . '/params-local.php'
+    require __DIR__ . '/params-local.php',
 );
 $urlManagerV1Rules = require(__DIR__ . '/../modules/v1/urlManagerV1.php');
 $urlManagerSwaggerRules = require(__DIR__ . '/../modules/swagger/urlManagerSwagger.php');
@@ -57,12 +59,13 @@ return [
             ],
         ],
         'user' => [
-//            'identityClass' => \api\modules\v1\models\records\auth\User::class,
+            'class' => User::class,
+            //            'identityClass' => \api\modules\v1\models\records\auth\User::class,
             'enableAutoLogin' => false,
             'enableSession' => false,
-            //            'identityCookie' => ['name' => '_identity-api', 'httpOnly' => true],
         ],
         'urlManager' => [
+            'class' => UrlManager::class,
             'enablePrettyUrl' => true,
             'enableStrictParsing' => true,
             'showScriptName' => false,
@@ -75,14 +78,14 @@ return [
             'verifyingKey' => '@api/runtime/jwtRS256.key.pub',
             'validationConstraints' => [
                 [
-                    function() {
+                    function () {
                         return Yii::createObject(LooseValidAt::class, [
                             'clock' => SystemClock::fromUTC(),
                         ]);
                     },
                 ],
                 [
-                    function() {
+                    function () {
                         $builder = Yii::$app->jwt->getConfiguration();
                         return Yii::createObject(SignedWith::class, [
                             'signer' => $builder->signer(),
