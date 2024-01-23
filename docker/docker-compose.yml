@@ -15,7 +15,7 @@ services:
 
   php-fpm-o:
     build:
-      context: php-fpm-o
+      context: php-fpm
     environment:
       APP_ENV: ${APP_ENV}
       APP_DEBUG: ${DEBUG}
@@ -36,7 +36,7 @@ services:
 
   php-cli-o:
     build:
-      context: php-cli-o
+      context: php-cli
     environment:
       PHP_IDE_CONFIG: "serverName=Docker"
       PHP_DEBUG_HOST: ${PHP_DEBUG_HOST}

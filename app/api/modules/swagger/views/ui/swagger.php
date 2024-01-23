@@ -21,7 +21,8 @@ $this->beginPage();
 <body class="swagger-section">
 <?php
 $this->beginBody(); ?>
-<?php if (YII_DEBUG): ?>
+<?php
+if (YII_DEBUG): ?>
     <div class="swagger-ui">
         <div class="wrapper">
             <div class="col-12">
@@ -29,7 +30,8 @@ $this->beginBody(); ?>
             </div>
         </div>
     </div>
-<?php endif; ?>
+<?php
+endif; ?>
 
 <div id="swagger-ui"></div>
 <?php
@@ -39,7 +41,7 @@ $this->beginBody(); ?>
  */
 $this->registerJs(
     <<< JS
-    var url = '/$ver/swagger.json?access-token=$token';
+    var url = '/swagger.json?access-token=$token';
     var token = '$token';
 
     const ui = SwaggerUIBundle({
@@ -58,8 +60,6 @@ $this->registerJs(
         layout: "StandaloneLayout",
         onComplete: () => {
             ui.preauthorizeApiKey("keycloak", token);
-            // var inp = document.querySelector('.auth-container input');
-            // inp.value = token;
         }
     });
     ui.authActions.preAuthorizeImplicit({
@@ -81,7 +81,7 @@ $this->registerJs(
     });
     // End Swagger UI call region
     window.ui = ui;
-JS
+JS,
 ); ?>
 
 <?php

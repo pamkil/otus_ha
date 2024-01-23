@@ -1,7 +1,11 @@
 <?php
 
+use bizley\jwt\Jwt;
 use common\modules\queue\Queue;
 use common\notification\NotificationService;
+use yii\authclient\Collection;
+use yii\db\Connection;
+use yii\web\UrlManager;
 
 /**
  * Yii bootstrap file.
@@ -19,13 +23,11 @@ class Yii extends \yii\BaseYii
  * Class BaseApplication
  * Used for properties that are identical for both WebApplication and ConsoleApplication
  *
- * @property \yii\authclient\Collection $authClientCollection
- * @property \yii\db\Connection $dbCc The database connection. This property is read-only.
- * @property \yii\web\UrlManager $urlManagerBackend
- * @property NotificationService $notification
- * @property Queue $queue
+ * @property Collection $authClientCollection
+ * @property Connection $dbCc The database connection. This property is read-only.
+ * @property UrlManager $urlManagerBackend
+ * @property Jwt $jwt
  */
 abstract class BaseApplication extends yii\base\Application
 {
 }
-

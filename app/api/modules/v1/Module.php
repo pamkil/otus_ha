@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace api\modules\v1;
 
 use OpenApi\Annotations as OA;
@@ -45,7 +47,7 @@ class Module extends \yii\base\Module
 
     public function init()
     {
-        define("API_HOST_SWAGGER", '/v1/');
+        define("API_HOST_SWAGGER", '/');
         parent::init();
         \Yii::$app->user->enableSession = false;
     }
