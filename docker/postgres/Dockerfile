@@ -1,4 +1,4 @@
-FROM postgres:14-alpine
+FROM postgres:16-alpine
 
 LABEL maintainer="Ben M <git@bmagg.com>"
 

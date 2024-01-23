@@ -10,12 +10,9 @@ use yii\web\Controller;
 class UiController extends Controller
 {
     /**
-     * @param null $id
-     * @param string $ver is: v1
-     *
      * @return string
      */
-    public function actionSwagger($id = null, string $ver = 'v1')
+    public function actionSwagger()
     {
         Yii::$app->response->format = 'html';
         $this->layout = false;
@@ -25,8 +22,7 @@ class UiController extends Controller
             'swagger',
             [
                 'token' => (string)$token,
-                'ver' => $ver,
-            ]
+            ],
         );
     }
 }

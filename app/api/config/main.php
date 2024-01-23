@@ -60,7 +60,7 @@ return [
         ],
         'user' => [
             'class' => User::class,
-            //            'identityClass' => \api\modules\v1\models\records\auth\User::class,
+            'identityClass' => \api\modules\v1\user\models\User::class,
             'enableAutoLogin' => false,
             'enableSession' => false,
         ],
